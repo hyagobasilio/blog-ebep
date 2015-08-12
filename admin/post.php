@@ -95,7 +95,8 @@ $sql    = mysql_query($query) or die(mysql_error());
                 <td><?php echo $rs['id']; ?></td>
                 <td><?php echo $rs['titulo']; ?></td>
                 <td><?php echo $rs['data_postagem']; ?></td>
-                <td> editar 
+                <td> 
+                 <a href="edit-post.php?id=<?php echo $rs['id']; ?>">Editar</a> 
                   <a href="?del=<?php echo $rs['id']; ?>">Excluir</a>
                   </td>
               </tr>
