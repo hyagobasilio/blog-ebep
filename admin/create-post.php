@@ -4,29 +4,21 @@
 include('../php/conexao.php');
 
 
-$titulo     =  isset($_POST['titulo']) ? $_POST['titulo'] : null;
+$nome     =  isset($_POST['nome']) ? $_POST['nome'] : null;
 
-$conteudo   = isset($_POST['conteudo']) ? $_POST['conteudo'] : null;
-
-$categoria  = isset($_POST['categoria']) ? $_POST['categoria'] : null;
 
 $msg = '';
 
-if ( empty($titulo) ) {
-  $msg += "Campo titulo obrigatório <br>";
-}
-if ( empty($conteudo) ) {
-  $msg += "Campo conteúdo obrigatório <br>";
-
+if ( empty($nome) ) {
+  $msg += "Campo nome obrigatório <br>";
 }
 
-if ( !empty($titulo) && !empty($conteudo) ) {
+if ( !empty($nome) ) {
   //recebe data atual
-  $dataAtual = date('Y-m-d H:i:s');
   //cria a query para ser executada no banco
-  $query = " INSERT INTO posts 
-        (titulo, conteudo, id_categoria, data_postagem) 
-        values ('$titulo', '$conteudo', $categoria, '$dataAtual') ";
+  $query = " INSERT INTO categoria
+        (nome) 
+        values ('$nome') ";
         
         //die($query);
   if (mysql_query($query) or mysql_error()) {
@@ -84,8 +76,8 @@ if ( !empty($titulo) && !empty($conteudo) ) {
           
           <ul class="nav nav-sidebar">
             <li><a href="post.php">Posts</a></li>
-            <li><a href="">Item 2</a></li>
-            <li><a href="">Item 3</a></li>
+            <li><a href="create-post.php">Cadastrar Posts </a></li>
+            <li><a href="http://localhost/bootstrap/page1.php#">Hello Word</a></li>
           </ul>
         </div>
 
@@ -102,32 +94,14 @@ if ( !empty($titulo) && !empty($conteudo) ) {
 
             <!-- Text input-->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="titulo">Titulo</label>  
+              <label class="col-md-4 control-label" for="nome">Nome</label>  
               <div class="col-md-4">
-              <input id="titulo" name="titulo" type="text" placeholder="Titulo" class="form-control input-md">
+              <input id="nome" name="nome" type="text" placeholder="nome" class="form-control input-md">
                 
               </div>
             </div>
 
-            <!-- Textarea -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="conteudo">Conteúdo</label>
-              <div class="col-md-4">                     
-                <textarea class="form-control" id="conteudo" name="conteudo"></textarea>
-              </div>
-            </div>
-
-            <!-- Select Basic -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="categoria">Categoria</label>
-              <div class="col-md-4">
-                <select id="categoria" name="categoria" class="form-control">
-                  <option value="1">Projetos</option>
-                  <option value="2">Eventos</option>
-                </select>
-              </div>
-            </div>
-
+          
             <!-- Button -->
             <div class="form-group">
               <label class="col-md-4 control-label" for="postar"></label>

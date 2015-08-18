@@ -1,20 +1,36 @@
 
 <?php 
 
-require_once('../php/conexao.php');
+include('../php/conexao.php');
 
-if ( isset($_GET['del']) && $_GET['del'] != '')  {
-  
-  $id = $_GET['del'];
 
-  $query = " DELETE FROM categoria WHERE id = $id ";
-  mysql_query($query);
+$id= $_GET['id'];
+
+$query = "SELECT * FROM categoria where id = $id";
+$sql = mysql_query($query) or die(mysql_error());
+$dados = mysql_fetch_array($sql);
+$nome     = isset($_POST['nome'])? $_POST['nome'] : null;
+
+$msg = '';
+
+if(empty($nome)) {
+  $msg += "Campo nome obrigatório <br>";
+}
+
+if(!empty($nome) && !empty($id)){
+  //Cria a query para ser executada no banco
+
+  $query = "UPDATE categoria SET nome = '$nome' where id = $id ";
+  $sql = mysql_query($query) or die(mysql_error());
+  //$dados = mysql_fetch_array($sql);
+
+    if(mysql_query($query)){
+      $msg = "categoria Atualizada com sucesso!";
+    }
 
 }
 
 
-$query  = " SELECT * from categoria ORDER BY id DESC ";
-$sql    = mysql_query($query) or die(mysql_error());
 
  ?>
 <!DOCTYPE html>
@@ -28,7 +44,7 @@ $sql    = mysql_query($query) or die(mysql_error());
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Dashboard Categoria</title>
+    <title>Dashboard Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -62,50 +78,44 @@ $sql    = mysql_query($query) or die(mysql_error());
         <div class="col-sm-3 col-md-2 sidebar">
           
           <ul class="nav nav-sidebar">
-            <li><a href="post.php">Categoria</a></li>
-            <li><a href="create-post.php">Cadastrar Categoria </a></li>
+            <li><a href="post.php">Posts</a></li>
+            <li><a href="create-post.php">Cadastrar Posts </a></li>
             <li><a href="http://localhost/bootstrap/page1.php#">Hello Word</a></li>
           </ul>
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Categoria</h1>
+          <h1 class="page-header">Posts</h1>
 
-          <a href="create-post.php" class="btn btn-primary pull-right">
-            <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> 
-            Novo
-          </a>
-
+          <p> <?php echo $msg; ?></p>
           
-          <!-- th = linha, td= coluna -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>#</th>
-              </tr>
-            </thead>
-            <tbody>
-            <?php
-              while($rs = mysql_fetch_array($sql)) {
-             ?>
-              <tr>
-                <td><?php echo $rs['id']; ?></td>
-                <td><?php echo $rs['nome']; ?></td>
-                <td>  
-                <td><a href="post.php?del=<?php echo $rs['id'] ?>" onclick="return confirm('Deseja Deletar?'); " class="btn btn-danger "><span class="glyphicon glyphicon-remove-sign"></span> Excluir </a> 
-                  &nbsp; <a href="edit-post.php?id=<?php echo $rs['id'] ?>" class="btn btn-primary"><span class="glyphicon glyphicon-wrench"> Editar</span></a></td>
-                  
-              </tr>
-              <?php } ?>
-            </tbody>
+          <form class="form-horizontal" method="post" >
+            <fieldset>
 
-          </table>
+            <!-- Form Name -->
+            <legend>Cadastro de Post</legend>
 
-            
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="nome">Nome</label>  
+              <div class="col-md-4">
+              <input value="<?php echo $dados['nome'];?>"id="nome" name="nome" type="text" placeholder="Nome" class="form-control input-md">
+                
+              </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="postar"></label>
+              <div class="col-md-4">
+                <button id="postar" name="postar" class="btn btn-primary">Postar</button>
+              </div>
+            </div>
+
+            </fieldset>
+            </form>
           
-
+  
         
         </div>
       </div>
