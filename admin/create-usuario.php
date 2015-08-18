@@ -4,33 +4,42 @@
 include('../php/conexao.php');
 
 
-$titulo     =  isset($_POST['titulo']) ? $_POST['titulo'] : null;
+$nome    =  isset($_POST['nome']) ? $_POST['nome'] : null;
 
-$conteudo   = isset($_POST['conteudo']) ? $_POST['conteudo'] : null;
+$login   = isset($_POST['login']) ? $_POST['login'] : null;
 
-$categoria  = isset($_POST['categoria']) ? $_POST['categoria'] : null;
+$email  = isset($_POST['email']) ? $_POST['email'] : null;
+
+$senha  = isset($_POST['senha']) ? $_POST['senha'] : null;
 
 $msg = '';
 
-if ( empty($titulo) ) {
-  $msg += "Campo titulo obrigatório <br>";
+if ( empty($nome) ) {
+  $msg += "Campo nome obrigatório <br>";
 }
-if ( empty($conteudo) ) {
-  $msg += "Campo conteúdo obrigatório <br>";
+if ( empty($login) ) {
+  $msg += "Campo login obrigatório <br>";
+
+}
+if ( empty($email) ) {
+  $msg += "Campo email obrigatório <br>";
+
+}
+if ( empty($senha) ) {
+  $msg += "Campo senha obrigatório <br>";
 
 }
 
-if ( !empty($titulo) && !empty($conteudo) ) {
-  //recebe data atual
-  $dataAtual = date('Y-m-d H:i:s');
+if ( !empty($nome) && !empty($login) && !empty($email) && !empty($senha) ) {
+
   //cria a query para ser executada no banco
-  $query = " INSERT INTO posts 
-        (titulo, conteudo, id_categoria, data_postagem) 
-        values ('$titulo', '$conteudo', $categoria, '$dataAtual') ";
+  $query = " INSERT INTO usuario 
+        (nome, login,email, senha) 
+        values ('$nome', '$login', '$email', '$senha') ";
         
         //die($query);
   if (mysql_query($query) or mysql_error()) {
-    $msg = "Matéria postada com sucesso!";
+    $msg = "Usuario cadastrado com sucesso!";
   }
 
 }
@@ -39,7 +48,7 @@ if ( !empty($titulo) && !empty($conteudo) ) {
 
  ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -94,54 +103,63 @@ if ( !empty($titulo) && !empty($conteudo) ) {
 
           <p> <?php echo $msg; ?></p>
           
-          <form class="form-horizontal" method="post" >
-            <fieldset>
+         <form class="form-horizontal" method="post">
+<fieldset>
 
-            <!-- Form Name -->
-            <legend>Cadastro de Post</legend>
+<!-- Form Name -->
+<legend>Cadastro Usuário</legend>
 
-            <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="titulo">Titulo</label>  
-              <div class="col-md-4">
-              <input id="titulo" name="titulo" type="text" placeholder="Titulo" class="form-control input-md">
-                
-              </div>
-            </div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nome">Nome</label>  
+  <div class="col-md-4">
+  <input id="nome" name="nome" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
 
-            <!-- Textarea -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="conteudo">Conteúdo</label>
-              <div class="col-md-4">                     
-                <textarea class="form-control" id="conteudo" name="conteudo"></textarea>
-              </div>
-            </div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="email">Email</label>  
+  <div class="col-md-4">
+  <input id="email" name="email" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
 
-            <!-- Select Basic -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="categoria">Categoria</label>
-              <div class="col-md-4">
-                <select id="categoria" name="categoria" class="form-control">
-                  <option value="1">Projetos</option>
-                  <option value="2">Eventos</option>
-                </select>
-              </div>
-            </div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="login">Login</label>  
+  <div class="col-md-4">
+  <input id="login" name="login" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
 
-            <!-- Button -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="postar"></label>
-              <div class="col-md-4">
-                <button id="postar" name="postar" class="btn btn-primary">Postar</button>
-              </div>
-            </div>
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="senha">Senha</label>
+  <div class="col-md-4">
+    <input id="senha" name="senha" type="password" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
 
-            </fieldset>
-            </form>
-          
-  
-        
-        </div>
+<!-- Multiple Radios -->
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="acao"></label>
+  <div class="col-md-8">
+    <button id="acao" name="acao" class="btn btn-success">Confirmar</button>
+    <button id="cancelar" name="cancelar" class="btn btn-danger">Cancelar</button>
+  </div>
+</div>
+
+</fieldset>
+</form>    
+         
+       </div>
       </div>
     </div>
 
