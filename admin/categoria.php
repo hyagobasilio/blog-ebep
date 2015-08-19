@@ -7,13 +7,13 @@ if ( isset($_GET['del']) && $_GET['del'] != '')  {
   
   $id = $_GET['del'];
 
-  $query = " DELETE FROM posts WHERE id = $id ";
+  $query = " DELETE FROM categoria WHERE id = $id ";
   mysql_query($query);
 
 }
 
 
-$query  = " SELECT * from posts ORDER BY id DESC ";
+$query  = " SELECT * from categoria ORDER BY id DESC ";
 $sql    = mysql_query($query) or die(mysql_error());
 
  ?>
@@ -28,7 +28,7 @@ $sql    = mysql_query($query) or die(mysql_error());
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Dashboard Posts</title>
+    <title>Dashboard Categoria</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -62,16 +62,16 @@ $sql    = mysql_query($query) or die(mysql_error());
         <div class="col-sm-3 col-md-2 sidebar">
           
           <ul class="nav nav-sidebar">
-            <li><a href="post.php">Posts</a></li>
-            <li><a href="usuario.php">Usuarios</a></li>
-            <li><a href="">Item 3</a></li>
+            <li><a href="categoria.php">Categoria</a></li>
+            <li><a href="create-categoria.php">Cadastrar Categoria </a></li>
+            <li><a href="http://localhost/bootstrap/page1.php#">Hello Word</a></li>
           </ul>
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Posts</h1>
+          <h1 class="page-header">Categoria</h1>
 
-          <a href="create-post.php" class="btn btn-primary pull-right">
+          <a href="create-categoria.php" class="btn btn-primary pull-right">
             <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> 
             Novo
           </a>
@@ -82,8 +82,7 @@ $sql    = mysql_query($query) or die(mysql_error());
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Titulo</th>
-                <th>Data Postagem</th>
+                <th>Nome</th>
                 <th>#</th>
               </tr>
             </thead>
@@ -93,12 +92,11 @@ $sql    = mysql_query($query) or die(mysql_error());
              ?>
               <tr>
                 <td><?php echo $rs['id']; ?></td>
-                <td><?php echo $rs['titulo']; ?></td>
-                <td><?php echo $rs['data_postagem']; ?></td>
-                <td> 
-                 <a href="edit-post.php?id=<?php echo $rs['id']; ?>">Editar</a> 
-                  <a href="?del=<?php echo $rs['id']; ?>">Excluir</a>
-                  </td>
+                <td><?php echo $rs['nome']; ?></td>
+                <td>  
+                <td><a href="categoria.php?del=<?php echo $rs['id'] ?>" onclick="return confirm('Deseja Deletar?'); " class="btn btn-danger "><span class="glyphicon glyphicon-remove-sign"></span> Excluir </a> 
+                  &nbsp; <a href="edit-categoria.php?id=<?php echo $rs['id'] ?>" class="btn btn-primary"><span class="glyphicon glyphicon-wrench"> Editar</span></a></td>
+                  
               </tr>
               <?php } ?>
             </tbody>
