@@ -43,7 +43,7 @@ if ( !empty($nome) && !empty($login) && !empty($email) && !empty($senha) ) {
         
         //die($query);
   if (mysql_query($query) or mysql_error()) {
-    $msg = "Usuario cadastrado com sucesso!";
+    $msg[] = "Usuario cadastrado com sucesso!";
   }
 
 }
@@ -109,8 +109,8 @@ if ( !empty($nome) && !empty($login) && !empty($email) && !empty($senha) ) {
             <ul>
             <?php 
 
-              foreach ($msg as $m ) {
-                echo "<li>" . $m . "</li>";
+              for ($i = 0; $i < count($msg) ; $i++) {
+                echo "<li>" . $msg[$i] . "</li>";
               }
            ?>
               

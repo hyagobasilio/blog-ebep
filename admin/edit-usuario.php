@@ -52,7 +52,7 @@ if ( !empty($nome) && !empty($login) && !empty($email) && !empty($senha) ) {
 
   if (mysql_query($query)) {
 
-    $msg = "Usuario atualizado com sucesso!";
+    $msg[] = "Usuario atualizado com sucesso!";
   }
 
 }
