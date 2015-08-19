@@ -3,40 +3,30 @@
 
 include('../php/conexao.php');
 
-$id = $_GET['id'];
 
-$query = "SELECT * FROM posts where id = $id ";
+$id= $_GET['id'];
 
+$query = "SELECT * FROM categoria where id = $id";
 $sql = mysql_query($query) or die(mysql_error());
 $dados = mysql_fetch_array($sql);
-
-$titulo     =  isset($_POST['titulo']) ? $_POST['titulo'] : null;
-
-$conteudo   = isset($_POST['conteudo']) ? $_POST['conteudo'] : null;
-
-$categoria  = isset($_POST['categoria']) ? $_POST['categoria'] : null;
-
+$nome     = isset($_POST['nome'])? $_POST['nome'] : null;
 
 $msg = '';
 
-if ( empty($titulo) ) {
-  $msg += "Campo titulo obrigatório <br>";
-}
-if ( empty($conteudo) ) {
-  $msg += "Campo conteúdo obrigatório <br>";
-
+if(empty($nome)) {
+  $msg += "Campo nome obrigatório <br>";
 }
 
-if ( !empty($titulo) && !empty($conteudo) && !empty($id)) {
-  
-  //cria a query para ser executada no banco
-  $query = " UPDATE posts SET titulo='$titulo', 
-  conteudo='$conteudo', id_categoria=$categoria  WHERE id = $id";
+if(!empty($nome) && !empty($id)){
+  //Cria a query para ser executada no banco
 
+  $query = "UPDATE categoria SET nome = '$nome' where id = $id ";
+  $sql = mysql_query($query) or die(mysql_error());
+  //$dados = mysql_fetch_array($sql);
 
-  if (mysql_query($query)) {
-    $msg = "Matéria Atualizada com sucesso!";
-  }
+    if(mysql_query($query)){
+      $msg = "categoria Atualizada com sucesso!";
+    }
 
 }
 
@@ -88,9 +78,9 @@ if ( !empty($titulo) && !empty($conteudo) && !empty($id)) {
         <div class="col-sm-3 col-md-2 sidebar">
           
           <ul class="nav nav-sidebar">
-            <li><a href="post.php">Posts</a></li>
-            <li><a href="usuario.php">Usuarios</a></li>
-            <li><a href="">Item 3</a></li>
+            <li><a href="categoria.php">Categoria</a></li>
+            <li><a href="create-categoria.php">Cadastrar Categoria </a></li>
+            <li><a href="http://localhost/bootstrap/page1.php#">Hello Word</a></li>
           </ul>
         </div>
 
@@ -103,35 +93,14 @@ if ( !empty($titulo) && !empty($conteudo) && !empty($id)) {
             <fieldset>
 
             <!-- Form Name -->
-            <legend>Cadastro de Post</legend>
+            <legend>Cadastro de Categoria</legend>
 
             <!-- Text input-->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="titulo">Titulo</label>  
+              <label class="col-md-4 control-label" for="nome">Nome</label>  
               <div class="col-md-4">
-              <input value="<?php echo $dados['titulo']; ?>" id="titulo" name="titulo" type="text" placeholder="Titulo" class="form-control input-md">
+              <input value="<?php echo $dados['nome'];?>"id="nome" name="nome" type="text" placeholder="Nome" class="form-control input-md">
                 
-              </div>
-            </div>
-
-            <!-- Textarea -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="conteudo">Conteúdo</label>
-              <div class="col-md-4">                     
-                <textarea class="form-control" id="conteudo" name="conteudo">
-                  <?php echo $dados['conteudo']; ?>
-                </textarea>
-              </div>
-            </div>
-
-            <!-- Select Basic -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="categoria">Categoria</label>
-              <div class="col-md-4">
-                <select id="categoria" name="categoria" class="form-control">
-                  <option value="1">Projetos</option>
-                  <option value="2">Eventos</option>
-                </select>
               </div>
             </div>
 

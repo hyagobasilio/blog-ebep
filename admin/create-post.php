@@ -84,7 +84,7 @@ if ( !empty($titulo) && !empty($conteudo) ) {
           
           <ul class="nav nav-sidebar">
             <li><a href="post.php">Posts</a></li>
-            <li><a href="">Item 2</a></li>
+            <li><a href="usuario.php">Usuarios</a></li>
             <li><a href="">Item 3</a></li>
           </ul>
         </div>
@@ -122,8 +122,13 @@ if ( !empty($titulo) && !empty($conteudo) ) {
               <label class="col-md-4 control-label" for="categoria">Categoria</label>
               <div class="col-md-4">
                 <select id="categoria" name="categoria" class="form-control">
-                  <option value="1">Projetos</option>
-                  <option value="2">Eventos</option>
+                  <?php
+                    $query = " SELECT * from categoria";
+                    $sql = mysql_query($query);
+                    while($rs = mysql_fetch_array($sql)) {
+                  ?>
+                  <option value="<?php echo $rs['id']; ?>"><?php echo $rs['nome']; ?></option>
+                  <?php } ?>
                 </select>
               </div>
             </div>
