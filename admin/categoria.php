@@ -60,12 +60,9 @@ $sql    = mysql_query($query) or die(mysql_error());
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-          
-          <ul class="nav nav-sidebar">
-            <li><a href="categoria.php">Categoria</a></li>
-            <li><a href="create-categoria.php">Cadastrar Categoria </a></li>
-            <li><a href="http://localhost/bootstrap/page1.php#">Hello Word</a></li>
-          </ul>
+          <!-- Menu principal -->
+          <?php include('estrutura/menu.php'); ?>
+          <!-- /Menu principal -->
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
