@@ -45,8 +45,8 @@
           
           <ul class="nav nav-sidebar">
             <li><a href="post.php">Posts</a></li>
-            <li><a href="">Item 2</a></li>
-            <li><a href="">Item 3</a></li>
+            <li><a href="create-post.php">Cadastrar Posts </a></li>
+            <li><a href="http://localhost/bootstrap/page1.php#">Hello Word</a></li>
           </ul>
         </div>
 
