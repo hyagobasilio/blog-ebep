@@ -84,7 +84,7 @@ if ( !empty($titulo) && !empty($conteudo) ) {
           
           <ul class="nav nav-sidebar">
             <li><a href="post.php">Posts</a></li>
-            <li><a href="">Usuario</a></li>
+            <li><a href="usuario.php">Usuarios</a></li>
             <li><a href="">Item 3</a></li>
           </ul>
         </div>
