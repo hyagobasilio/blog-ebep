@@ -12,22 +12,26 @@ $email  = isset($_POST['email']) ? $_POST['email'] : null;
 
 $senha  = isset($_POST['senha']) ? $_POST['senha'] : null;
 
-$msg = '';
+$msg = [];
 
-if ( empty($nome) ) {
-  $msg += "Campo nome obrigatório <br>";
-}
-if ( empty($login) ) {
-  $msg += "Campo login obrigatório <br>";
+// verifica se o usuário submeteu o formulário
+if (count($_POST) ) {
 
-}
-if ( empty($email) ) {
-  $msg += "Campo email obrigatório <br>";
+  if ( empty($nome)) {
+    $msg[] = "Campo nome obrigatório";
+  }
+  if ( empty($login) ) {
+    $msg[] = "Campo login obrigatório";
 
-}
-if ( empty($senha) ) {
-  $msg += "Campo senha obrigatório <br>";
+  }
+  if ( empty($email) ) {
+    $msg[] = "Campo email obrigatório";
 
+  }
+  if ( empty($senha) ) {
+    $msg[] = "Campo senha obrigatório";
+
+  }
 }
 
 if ( !empty($nome) && !empty($login) && !empty($email) && !empty($senha) ) {
@@ -93,21 +97,30 @@ if ( !empty($nome) && !empty($login) && !empty($email) && !empty($senha) ) {
           
           <ul class="nav nav-sidebar">
             <li><a href="post.php">Posts</a></li>
-            <li><a href="">Usuario</a></li>
+            <li><a href="usuario.php">Usuarios</a></li>
             <li><a href="">Item 3</a></li>
           </ul>
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Posts</h1>
+          <h1 class="page-header">Usuário</h1>
 
-          <p> <?php echo $msg; ?></p>
+          <p> 
+            <ul>
+            <?php 
+
+              foreach ($msg as $m ) {
+                echo "<li>" . $m . "</li>";
+              }
+           ?>
+              
+            </ul>
           
          <form class="form-horizontal" method="post">
 <fieldset>
 
 <!-- Form Name -->
-<legend>Cadastro Usuário</legend>
+<legend>Cadastro</legend>
 
 <!-- Text input-->
 <div class="form-group">
