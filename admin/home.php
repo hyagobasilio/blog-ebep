@@ -43,11 +43,9 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           
-          <ul class="nav nav-sidebar">
-            <li><a href="post.php">Posts</a></li>
-            <li><a href="usuario.php">Usuarios</a></li>
-            <li><a href="">Item 3</a></li>
-          </ul>
+          <!-- Menu principal -->
+          <?php include('estrutura/menu.php'); ?>
+          <!-- /Menu principal -->
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
