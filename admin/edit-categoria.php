@@ -34,7 +34,7 @@ if(!empty($nome) && !empty($id)){
 
  ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,7 +44,7 @@ if(!empty($nome) && !empty($id)){
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>BLOG-EBEP - Editar categoria</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -83,7 +83,7 @@ if(!empty($nome) && !empty($id)){
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Posts</h1>
+          <h1 class="page-header">Categoria</h1>
 
           <p> <?php echo $msg; ?></p>
           
