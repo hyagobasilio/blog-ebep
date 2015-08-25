@@ -81,8 +81,10 @@ $sql    = mysql_query($query) or die(mysql_error());
               <tr>
                 <th>ID</th>
                 <th>Nome do Usuario</th>
-                <th>Login</th>
+                <th>cpf</th>
+                <th>Data de nascimento</th>
                 <th>Email</th>
+                <th>Login</th>
                 <th>#</th>
               </tr>
             </thead>
@@ -93,6 +95,8 @@ $sql    = mysql_query($query) or die(mysql_error());
               <tr>
                 <td><?php echo $rs['id']; ?></td>
                 <td><?php echo $rs['nome']; ?></td>
+                <td><?php echo $rs['cpf']; ?></td>
+                <td><?php echo date('d/m/Y', strtotime($rs['data_nascimento'])); ?></td>
                 <td><?php echo $rs['login']; ?></td>
                 <td><?php echo $rs['email']; ?></td>
                 <td> 
